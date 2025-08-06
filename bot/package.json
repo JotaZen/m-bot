@@ -1,13 +1,13 @@
 {
-  "name": "mc-bot-1.21.6",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "minecraft-protocol": "^1.60.1",
-    "minecraft-chat": "^1.4.0"
-  }
+    "name": "mc-bot-1.21.6",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.0",
+        "minecraft-protocol": "^1.60.1",
+        "prismarine-chat": "^1.2.0"
+    }
 }
