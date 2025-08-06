@@ -1,29 +1,14 @@
 version: '3.8'
 
 services:
-  mc_clean:
-    image: itzg/minecraft-server
-    container_name: mc-clean-1-21-6
-    ports:
-      - "25566:25565"
-    environment:
-      EULA: "TRUE"
-      VERSION: "1.21.6"
-      ONLINE_MODE: "FALSE"
-    volumes:
-      - mc_clean_data:/data
-    restart: unless-stopped
-
   bot:
     build:
       context: ./bot
       dockerfile: ../Dockerfile
     env_file: ./bot/.env
-    depends_on:
-      - mc_clean
     network_mode: host
     restart: unless-stopped
-    entrypoint: ["/bin/sh", "-c", "until nc -z 127.0.0.1 25566; do echo '⏳ Esperando servidor...'; sleep 2; done; echo '✅ Servidor listo. Iniciando bot...'; npm start"]
+    entrypoint: ["/bin/sh", "-c", "until nc -z 127.0.0.1 25565; do echo '⏳ Esperando servidor...'; sleep 2; done; echo '✅ Servidor listo. Iniciando bot...'; npm start"]
 
 volumes:
   mc_clean_data:
