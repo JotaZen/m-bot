@@ -4,6 +4,6 @@ services:
   bot:
     build:
       context: ./bot
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     env_file: ./bot/.env
     network_mode: host
