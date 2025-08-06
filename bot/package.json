@@ -1,12 +1,12 @@
 {
-  "name": "minecraft-bot",
+  "name": "mc-bot-1.21.6",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
   "dependencies": {
     "dotenv": "^16.0.0",
-    "mineflayer": "^4.7.0"
+    "minecraft-protocol": "^1.60.0"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }

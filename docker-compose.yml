@@ -3,7 +3,6 @@ version: '3.8'
 services:
   bot:
     build:
-      context: .
-      dockerfile: docker/Dockerfile
-    env_file: bot/.env
+      context: ./bot
+    env_file: ./bot/.env
     network_mode: host
