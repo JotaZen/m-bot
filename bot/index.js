@@ -6,24 +6,37 @@ const client = mc.createClient({
   host: process.env.MC_HOST,
   port: parseInt(process.env.MC_PORT, 10),
   username: process.env.MC_USERNAME,
-  version: process.env.MC_VERSION
+  version: process.env.MC_VERSION,
+  skipValidation: true,
+  hideErrors: true
 })
 
 client.on('connect', () => {
-  console.log('✅ Conectado al servidor Minecraft')
+  console.log('✅ Bot conectado al servidor Minecraft')
 })
 
 client.on('chat', (packet) => {
   try {
     const raw = packet.unsignedContent || packet.message
     const chat = new ChatMessage(raw)
-    const text = chat.toString()
-    console.log(`💬 ${text}`)
-  } catch (e) {
-    console.warn('❗ Error al leer mensaje:', e.message)
+    const msg = chat.toString()
+    console.log(`💬 ${msg}`)
+
+    if (msg.toLowerCase().includes('salta')) {
+      client.write('chat', { message: '¡Estoy saltando!' })
+    }
+  } catch (err) {
+    console.warn('❗ No se pudo interpretar mensaje:', err.message)
   }
 })
 
+// 🛑 Ignorar canales de mods o plugins
+client.on('plugin_message', (packet) => {
+  console.log(`📦 Canal plugin ignorado: ${packet.channel}`)
+  // No respondemos nada
+})
+
+// Mostrar razones detalladas del kick
 client.on('kick_disconnect', (reason) => {
   console.log('🛑 Expulsado:', JSON.stringify(reason, null, 2))
 })
