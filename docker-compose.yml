@@ -23,7 +23,7 @@ services:
       - mc_clean
     network_mode: host
     restart: unless-stopped
-    entrypoint: ["/bin/sh", "-c", "if ! command -v nc >/dev/null 2>&1; then echo 'Instalando netcat...'; apt update && apt install -y netcat; fi; until nc -z 127.0.0.1 25566; do echo '⏳ Esperando servidor...'; sleep 2; done; echo '✅ Servidor listo. Iniciando bot...'; npm start"]
+    entrypoint: ["/bin/sh", "-c", "until nc -z 127.0.0.1 25566; do echo '⏳ Esperando servidor...'; sleep 2; done; echo '✅ Servidor listo. Iniciando bot...'; npm start"]
 
 volumes:
   mc_clean_data:
