@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   bot:
@@ -6,7 +6,4 @@ services:
       context: .
       dockerfile: docker/Dockerfile
     env_file: bot/.env
-
-
-volumes:
-  mcdata:
+    network_mode: host
