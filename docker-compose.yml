@@ -1,9 +1,27 @@
 version: '3.8'
 
 services:
+  mc_clean:
+    image: itzg/minecraft-server
+    container_name: mc-clean-1-21-6
+    ports:
+      - "25566:25565"  # VPS:Contenedor
+    environment:
+      EULA: "TRUE"
+      VERSION: "1.21.6"
+      ONLINE_MODE: "FALSE"
+    volumes:
+      - mc_clean_data:/data
+    restart: unless-stopped
+
   bot:
     build:
       context: ./bot
       dockerfile: ../Dockerfile
     env_file: ./bot/.env
-    network_mode: host
+    depends_on:
+      - mc_clean
+    network_mode: host  # Para que el bot vea el puerto 25566 en 127.0.0.1
+
+volumes:
+  mc_clean_data:
